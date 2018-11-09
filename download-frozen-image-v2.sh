@@ -341,6 +341,6 @@ else
 fi
 
 cd $dir
-tar -zcvf ../$dir.tgz ./*
+tar -zcvf ../`basename $dir.tgz` ./*
 
 echo "Download of images '$dir' complete."
