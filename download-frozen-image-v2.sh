@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 set -eo pipefail
 
 # hello-world                      latest              ef872312fe1b        3 months ago        910 B
@@ -22,7 +22,7 @@ usage() {
 }
 
 dir="$1" # dir for building tar in
-# shift || usage 1 >&2
+shift || usage 1 >&2
 
 [ $# -gt 0 -a "$dir" ] || usage 2 >&2
 mkdir -p "$dir"
@@ -340,7 +340,6 @@ else
 	rm -f "$dir/manifest.json"
 fi
 
-cd $dir
-tar -cvf ../`basename $dir.tar` ./*
-
-echo "Download of images '$dir' complete."
+echo "Download of images into '$dir' complete."
+echo "Use something like the following to load the result into a Docker daemon:"
+echo "  tar -cC '$dir' . | docker load"
